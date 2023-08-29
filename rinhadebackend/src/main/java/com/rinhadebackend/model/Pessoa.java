@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Set;
 import java.util.UUID;
 
@@ -18,9 +19,7 @@ import java.util.UUID;
 public class Pessoa {
 
     @Id
-    @GeneratedValue(generator = "uuid4")
-    @GenericGenerator(name = "uuid4", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(columnDefinition = "BINARY(16)")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(unique = true, length = 32, nullable = false)
@@ -30,8 +29,9 @@ public class Pessoa {
     private String nome;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Embedded
-    private Nascimento nascimento;
+    private DataNascimento nascimento;
 
     @Column(nullable = true)
     @ManyToMany

@@ -1,18 +1,18 @@
 package com.rinhadebackend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import java.util.UUID;
+import lombok.*;
 
-@Entity(name="stacks")
-@Table(name="stacks")
+import java.util.*;
+
+@Entity(name = "stacks")
+@Table(name = "stacks")
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = {"id", "nome"})
+@Builder
+@NoArgsConstructor
 public class Stack {
 
     @Id
@@ -23,4 +23,38 @@ public class Stack {
     private String nome;
 
 
+    public static class StackAdapter {
+
+        public static Set<Stack> fromSetStringToSetStack(Set<String> listOfStack) {
+
+            Set<Stack> stack = new HashSet<Stack>();
+
+            for (String newStack : listOfStack) {
+                stack.add(
+
+                        Stack.builder(
+                        ).nome(newStack).build()
+                );
+            }
+            return stack;
+
+        }
+
+        public static Set<String> fromSetStackToSetString(Set<Stack> setOfStack) {
+
+            Set<String> stack = new HashSet<String>();
+
+            for (Stack newStack : setOfStack) {
+                stack.add(
+                        newStack.getNome()
+                );
+            }
+            return stack;
+        }
+
+    }
+
+
 }
+
+

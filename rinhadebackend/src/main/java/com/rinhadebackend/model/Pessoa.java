@@ -1,12 +1,10 @@
 package com.rinhadebackend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,6 +14,8 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
+@Builder
+@NoArgsConstructor
 public class Pessoa {
 
     @Id
@@ -30,13 +30,10 @@ public class Pessoa {
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Embedded
-    private DataNascimento nascimento;
+    private LocalDate nascimento;
 
     @Column(nullable = true)
     @ManyToMany
     private Set<Stack> stacks;
-
-
 
 }

@@ -10,7 +10,7 @@ import java.util.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "nome"})
+@EqualsAndHashCode(of = {"id", "name"})
 @Builder
 @NoArgsConstructor
 public class Stack {
@@ -20,7 +20,7 @@ public class Stack {
     private UUID id;
 
     @Column(unique = true, nullable = false, length = 32)
-    private String nome;
+    private String name;
 
 
     public static class StackAdapter {
@@ -30,11 +30,7 @@ public class Stack {
             Set<Stack> stack = new HashSet<Stack>();
 
             for (String newStack : listOfStack) {
-                stack.add(
-
-                        Stack.builder(
-                        ).nome(newStack).build()
-                );
+                stack.add(Stack.builder().name(newStack).build());
             }
             return stack;
 
@@ -45,9 +41,7 @@ public class Stack {
             Set<String> stack = new HashSet<String>();
 
             for (Stack newStack : setOfStack) {
-                stack.add(
-                        newStack.getNome()
-                );
+                stack.add(newStack.getName());
             }
             return stack;
         }

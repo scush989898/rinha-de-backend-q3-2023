@@ -8,29 +8,29 @@ import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity(name="pessoas")
-@Table(name="pessoas")
+@Entity(name="persons")
+@Table(name="persons")
 @Getter
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
 @Builder
 @NoArgsConstructor
-public class Pessoa {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(unique = true, length = 32, nullable = false)
-    private String apelido;
+    private String nickName;
 
     @Column(length = 100, nullable = false)
-    private String nome;
+    private String name;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate nascimento;
+    private LocalDate dateOfBirth;
 
     @Column(nullable = true)
     @ManyToMany

@@ -2,12 +2,14 @@ package com.rinhadebackend.service;
 
 import com.rinhadebackend.dto.request.PersonRequest;
 import com.rinhadebackend.dto.response.PersonResponse;
+import com.rinhadebackend.exception.custom.EntityNotFoundException;
 import com.rinhadebackend.model.Person;
 import com.rinhadebackend.model.Stack;
 import com.rinhadebackend.repository.PersonRepository;
 import com.rinhadebackend.repository.StackRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -21,6 +23,7 @@ public class PersonServiceImpl implements PersonService {
     private final StackRepository stackRepository;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public PersonResponse createPerson(PersonRequest personRequest) {
         Person entity = personRequest.toPerson();
 
@@ -44,12 +47,14 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Override
-    public PersonResponse getPersonById(UUID id) throws Exception {
+    public PersonResponse getPersonById(UUID id) throws EntityNotFoundException {
 
         Optional<Person> person = personRepository.findById(id);
+
         if (person.isEmpty()) {
-            throw new Exception("Not found");
+            throw new EntityNotFoundException();
         }
+
         return PersonResponse.fromPerson(person.get());
     }
 

@@ -29,6 +29,9 @@ public class Stack {
 
             Set<Stack> stack = new HashSet<Stack>();
 
+            if (listOfStack == null) {
+                return stack;
+            }
             for (String newStack : listOfStack) {
                 stack.add(Stack.builder().name(newStack).build());
             }
@@ -38,6 +41,9 @@ public class Stack {
 
         public static Set<String> fromSetStackToSetString(Set<Stack> setOfStack) {
 
+            if (setOfStack.isEmpty()) {
+                return null;
+            }
             Set<String> stack = new HashSet<String>();
 
             for (Stack newStack : setOfStack) {

@@ -17,7 +17,7 @@ public record PersonResponse(
     public static PersonResponse fromPerson(Person person) {
 
 
-        Set<String> newStack = Stack.StackAdapter.fromSetStackToSetString(person.getStacks());
+        Set<String> stacks = Stack.StackAdapter.fromSetStackToSetString(person.getStacks());
 
 
         return new PersonResponse(
@@ -26,7 +26,7 @@ public record PersonResponse(
                 person.getNickName(),
                 person.getName(),
                 person.getDateOfBirth(),
-                newStack
+                stacks
 
         );
 

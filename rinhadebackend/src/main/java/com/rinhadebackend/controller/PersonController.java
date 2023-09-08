@@ -2,6 +2,7 @@ package com.rinhadebackend.controller;
 
 import com.rinhadebackend.dto.request.PersonRequest;
 import com.rinhadebackend.dto.response.PersonResponse;
+import com.rinhadebackend.exception.custom.EntityNotFoundException;
 import com.rinhadebackend.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class PersonController {
     }
 
     @GetMapping("/pessoas/{id}")
-    public ResponseEntity<PersonResponse> getPersonById(@PathVariable UUID id) throws Exception {
+    public ResponseEntity<PersonResponse> getPersonById(@PathVariable UUID id) throws EntityNotFoundException {
 
         PersonResponse personResponse = personService.getPersonById(id);
         return ResponseEntity.ok(personResponse);

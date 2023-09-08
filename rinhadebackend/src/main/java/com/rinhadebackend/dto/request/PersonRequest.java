@@ -14,19 +14,49 @@ public record PersonRequest(
         @JsonProperty("nascimento") LocalDate dateOfBirth,
         @JsonProperty("stack") Set<String> stack) {
 
+
     public Person toPerson() {
 
+        if (!isPersonValid()) {
+            throw new IllegalArgumentException();
+        }
 
-        Set<Stack> newstack = Stack.StackAdapter.fromSetStringToSetStack(stack);
+        Set<Stack> newStack = Stack.StackAdapter.fromSetStringToSetStack(this.stack);
 
         return Person.builder()
                 .nickName(this.nickName)
                 .name(this.name)
                 .dateOfBirth(this.dateOfBirth)
-                .stacks(newstack)
+                .stacks(newStack)
                 .build();
-
     }
 
+    public boolean isPersonValid() {
+        return isPersonNameValid() && isPersonStacksValid();
+    }
+
+    public boolean isPersonNameValid() {
+        try {
+            Integer.parseInt(this.name);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+    }
+
+    public boolean isPersonStacksValid() {
+
+        if (this.stack == null) {
+            return true;
+        }
+        for (String item : this.stack) {
+            try {
+                Integer.parseInt(item);
+                return false;
+            } catch (NumberFormatException ignored) {
+            }
+        }
+        return true;
+    }
 
 }

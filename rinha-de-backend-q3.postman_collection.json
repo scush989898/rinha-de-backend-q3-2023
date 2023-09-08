@@ -1,0 +1,458 @@
+{
+	"info": {
+		"_postman_id": "794e6a9d-d193-479a-b047-70c7e67c5331",
+		"name": "rinha-de-backend-q3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create person",
+			"item": [
+				{
+					"name": "201 => first person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"josé\",\r\n    \"nome\" : \"José Roberto\",\r\n    \"nascimento\" : \"2000-10-01\",\r\n    \"stack\" : [\"C#\", \"Node\", \"Oracle\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "201 => second person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"ana\",\r\n    \"nome\" : \"Ana Barbosa\",\r\n    \"nascimento\" : \"1985-09-23\",\r\n    \"stack\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "201 => third person",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"zeca\",\r\n    \"nome\" : \"pagodinho\",\r\n    \"nascimento\" : \"1995-10-11\",\r\n    \"stack\" : [\"Node\", \"Postgres\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "422 => nickname already exists",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"josé\",\r\n    \"nome\" : \"José Roberto\",\r\n    \"nascimento\" : \"2000-10-01\",\r\n    \"stack\" : [\"C#\", \"Node\", \"Oracle\"]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "422 =>  name cant be null",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"ana\",\r\n    \"nome\" : null, \r\n    \"nascimento\" : \"1985-09-23\",\r\n    \"stack\" : null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "422 => nickname cant be null",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : null, \r\n    \"nome\" : \"Ana Barbosa\",\r\n    \"nascimento\" : \"1985-01-23\",\r\n    \"stack\" : null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400 => name should be a valid String",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"apelido\",\r\n    \"nome\" : 1,\r\n    \"nascimento\" : \"1985-01-01\",\r\n    \"stack\" : null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400 => stacks should be a valid String Array",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\" : \"apelido\",\r\n    \"nome\" : \"nome\",\r\n    \"nascimento\" : \"1985-01-01\",\r\n    \"stack\" : [1, \"PHP\"] \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get person by id",
+			"item": [
+				{
+					"name": "200 => first person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas/c50db30c-8352-4518-911a-40c9298ed12e",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"c50db30c-8352-4518-911a-40c9298ed12e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200 => second person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas/0b8ae62b-b78e-4339-8378-a7d0f02e3185",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"0b8ae62b-b78e-4339-8378-a7d0f02e3185"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "404 => person not found",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas/0b8ae62b-b78e-4339-8378-a7d0f02e3186",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas",
+								"0b8ae62b-b78e-4339-8378-a7d0f02e3186"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get person by search term",
+			"item": [
+				{
+					"name": "200 => search term \"node\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas?t=node",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "node"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200 => search term \"berto\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas?t=berto",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "berto"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "200 => search term = \"Python\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas?t=python",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "python"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "400 => parameter t is required",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas?",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "get persons count",
+			"item": [
+				{
+					"name": "200 => get count",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/contagem-pessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"contagem-pessoas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

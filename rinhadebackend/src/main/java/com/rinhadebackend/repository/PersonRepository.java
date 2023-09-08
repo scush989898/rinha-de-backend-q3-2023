@@ -15,10 +15,10 @@ public interface PersonRepository extends JpaRepository<Person, UUID> {
                    PE.date_of_birth
                FROM
                    PERSONS PE
-                       INNER JOIN
+                       LEFT JOIN
                            PERSONS_STACKS PS
                                    ON PS.persons_id = PE.id
-                       INNER JOIN
+                       LEFT JOIN
                            STACKS ST
                                    ON ST.id = PS.stacks_id
                WHERE

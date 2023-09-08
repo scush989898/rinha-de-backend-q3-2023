@@ -25,29 +25,29 @@ public class Stack {
 
     public static class StackAdapter {
 
-        public static Set<Stack> fromSetStringToSetStack(Set<String> listOfStack) {
+        public static Set<Stack> fromSetStringToSetStack(Set<String> setOfStrings) {
 
             Set<Stack> stack = new HashSet<Stack>();
 
-            if (listOfStack == null) {
+            if (setOfStrings == null) {
                 return stack;
             }
-            for (String newStack : listOfStack) {
-                stack.add(Stack.builder().name(newStack).build());
+            for (String currentStack : setOfStrings) {
+                stack.add(Stack.builder().name(currentStack).build());
             }
             return stack;
 
         }
 
-        public static Set<String> fromSetStackToSetString(Set<Stack> setOfStack) {
+        public static Set<String> fromSetStackToSetString(Set<Stack> setOfStacks) {
 
-            if (setOfStack.isEmpty()) {
+            if (setOfStacks.isEmpty()) {
                 return null;
             }
             Set<String> stack = new HashSet<String>();
 
-            for (Stack newStack : setOfStack) {
-                stack.add(newStack.getName());
+            for (Stack currentStack : setOfStacks) {
+                stack.add(currentStack.getName());
             }
             return stack;
         }

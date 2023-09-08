@@ -3,7 +3,7 @@ package com.rinhadebackend.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
+import org.hibernate.annotations.Index;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
@@ -23,9 +23,11 @@ public class Person {
     private UUID id;
 
     @Column(unique = true, length = 32, nullable = false)
+    @Index(name = "persons_nickname_idx")
     private String nickName;
 
     @Column(length = 100, nullable = false)
+    @Index(name = "persons_name_idx")
     private String name;
 
     @Column(nullable = false)

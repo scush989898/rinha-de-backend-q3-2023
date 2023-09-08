@@ -406,6 +406,30 @@
 					"response": []
 				},
 				{
+					"name": "200 => search term = \"ana\"",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoas?t=ana",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoas"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "ana"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "400 => parameter t is required",
 					"request": {
 						"method": "GET",

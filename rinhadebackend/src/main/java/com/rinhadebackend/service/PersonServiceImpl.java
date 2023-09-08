@@ -60,7 +60,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public List<PersonResponse> getPersonsBySearchTerm(String searchTerm) {
-        List<Person> listOfPersons = personRepository.getPersonBySearchTerm(searchTerm);
+        List<Person> listOfPersons = personRepository.getPersonBySearchTerm("%" + searchTerm + "%");
         return listOfPersons.stream().map(PersonResponse::fromPerson).toList();
     }
 

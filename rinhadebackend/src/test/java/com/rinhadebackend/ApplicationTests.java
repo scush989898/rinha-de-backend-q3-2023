@@ -73,7 +73,8 @@ class ApplicationTests {
             assertEquals("stack", currentPersonRequest.stack(), currentPersonResponse.stack());
         }
 
-        assertEquals("size", PersonMock.personRequestList.size(), personRepository.findAll().size());
+        assertEquals("Size of the persons List",
+                PersonMock.personRequestList.size(), personRepository.findAll().size());
 
     }
 
@@ -156,10 +157,10 @@ class ApplicationTests {
                 PersonResponse.class
         );
 
-        assertEquals("name", person.getName(), personResponse.name());
-        assertEquals("nickName", person.getNickName(), personResponse.nickName());
-        assertEquals("dateOfBirth", person.getDateOfBirth(), personResponse.dateOfBirth());
-        assertEquals("id", person.getId().toString(), personResponse.id());
+        assertEquals("persons name", person.getName(), personResponse.name());
+        assertEquals("persons nickName", person.getNickName(), personResponse.nickName());
+        assertEquals("persons dateOfBirth", person.getDateOfBirth(), personResponse.dateOfBirth());
+        assertEquals("persons id", person.getId().toString(), personResponse.id());
 
     }
 
@@ -189,9 +190,10 @@ class ApplicationTests {
 
         List<PersonResponse> firstResponse = objectMapper.readValue(
                 firstResult.getResponse().getContentAsString(StandardCharsets.UTF_8),
-                new TypeReference<List<PersonResponse>>() {});
+                new TypeReference<>() {
+                });
 
-        assertEquals("size", firstResponse.size(), 2);
+        assertEquals("Size of the persons List", firstResponse.size(), 2);
 
 
         MvcResult secondResult =
@@ -204,10 +206,10 @@ class ApplicationTests {
 
         List<PersonResponse> secondResponse = objectMapper.readValue(
                 secondResult.getResponse().getContentAsString(StandardCharsets.UTF_8),
-                new TypeReference<List<PersonResponse>>() {
+                new TypeReference<>() {
                 });
 
-        assertEquals("size", secondResponse.size(), 0);
+        assertEquals("Size of the persons List", secondResponse.size(), 0);
 
 
         mockMvc.perform(
@@ -234,7 +236,7 @@ class ApplicationTests {
                         getContentAsString(StandardCharsets.UTF_8), String.class);
 
 
-        assertEquals("persons count", PersonMock.personRequestList.size(), Integer.parseInt(response));
+        assertEquals("Persons count", PersonMock.personRequestList.size(), Integer.parseInt(response));
 
     }
 

@@ -23,11 +23,12 @@ public class PersonServiceImpl implements PersonService {
     private final StackRepository stackRepository;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+//    @Transactional(rollbackFor = Exception.class)
     public PersonResponse createPerson(PersonRequest personRequest) {
         Person entity = personRequest.toPerson();
 
         Map<String, Stack> stackMap = new HashMap<>();
+
         for (Stack stack : entity.getStacks()) {
 
             Optional<Stack> currentStack = stackRepository.findByNameIgnoreCase(stack.getName());
